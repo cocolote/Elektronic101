@@ -3,6 +3,8 @@ require 'sinatra/activerecord'
 #this is dedicated to Spencer, great EE who show us the power of pry!
 require 'pry'
 require 'soundcloud'
+require 'dotenv'
+Dotenv.load
 
 ###########
 # HELPERS #
@@ -10,8 +12,8 @@ require 'soundcloud'
 
 def get_client
   client = Soundcloud.new(
-    client_id:     'c34662c5356009446aeb49c523ddba21',
-    client_secret: 'f7ef7299b69a507e0471f68e03281430',
+    client_id:     ENV['MY_CLIENT_ID'],
+    client_secret: ENV['MY_CLIENT_SECRET'],
     redirect_uri:  'http://localhost:4567/oauth/callback'
   )
 end
@@ -41,6 +43,7 @@ end
 get '/oauth/callback' do
   client       = get_client
   access_token = client.exchange_token(code: params[:code])
+  # Create the user and store the access_token, refresh_tokn
   current_user = get_soundcloud_user(access_token[:access_token], '/me')
   likes        = get_soundcloud_user(access_token[:access_token], '/me/favorites')
   binding.pry
