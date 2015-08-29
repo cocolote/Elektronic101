@@ -3,13 +3,22 @@
 
 body {
   font-family: 'Roboto Slab', serif;
-  /*background-image: url(/img/sound-wave.jpg);*/
-  background-image: url(http://wallpaperput.com/wp-content/uploads/2014/10/cool-headphone-music-HD-wallpaper.jpg);
-  background-size: cover;
+  background-color: #151825;
   color: white;
 }
 
 /* ===================== HOME STYLE ===================== */
+
+/* ---------- Backgroind ---------- */
+
+#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-image: url(/img/symbols-bk.png);
+  background-size: cover;
+}
 
 /* ---------- Main Title ---------- */
 
@@ -18,14 +27,14 @@ body {
   background-image: url(/img/fake-brick.png);
   background-color: rgba(21, 24, 37, 0.8);
   box-shadow: 0 0 30px -2px #111;
-  margin-top: 3vh;
+  margin: 5.5vh;
   border-radius: none;
 }
 
 #main-title h1 {
   font-family: 'Monoton', cursive;
   color: #d1423a;
-  font-size: 9vw;
+  font-size: 8vw;
 }
 
 #main-title a {
