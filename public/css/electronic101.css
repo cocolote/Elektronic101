@@ -37,7 +37,7 @@ body {
   font-size: 8vw;
 }
 
-#main-title a {
+#start-button a {
   text-decoration: none;
   color: #aaa;
   -webkit-transition: all 0.3s;
@@ -45,7 +45,7 @@ body {
   -o-transition: all 0.3s;
 }
 
-#main-title a:hover {
+#start-button a:hover {
   text-shadow: 0 0 5px white,
                0 0 20px #3cdb57;
   color: white;

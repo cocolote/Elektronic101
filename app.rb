@@ -41,15 +41,9 @@ get '/oauth' do
 end
 
 get '/oauth/callback' do
-  client       = get_client
-  access_token = client.exchange_token(code: params[:code])
-  # Create the user and store the access_token, refresh_tokn
-  likes         = get_soundcloud_user(access_token[:access_token], '/me/favorites')
-  redirect '/me'
-end
-
-get '/me' do
+  client        = get_client
+  access_token  = client.exchange_token(code: params[:code])
   @current_user = get_soundcloud_user(access_token[:access_token], '/me')
+  binding.pry
   erb :player
 end
-

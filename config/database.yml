@@ -2,7 +2,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: electronic101_development
+  database: elektronic101_development
   pool: 5
   username:
   password:
@@ -10,7 +10,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: electronic101_test
+  database: elektronic101_test
   pool: 5
   username:
   password:
@@ -18,7 +18,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: electronic101_production
+  database: elektronic101_production
   pool: 5
   username:
   password:
