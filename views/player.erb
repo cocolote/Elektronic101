@@ -1,12 +1,28 @@
+<nav>
+  <div class="col-xs-8">
+    <h1 id="nav-title">Elektronic 101</h1>
+  </div>
+
+  <div class="col-xs-4">
+
+    <a id="new-playlist" class="nav-icon" href="#">
+      <h3 class="glyphicon glyphicon-th-list"></h3>
+    </a>
+ 
+    <a id="new-song" class="nav-icon" href="#">
+      <h3 class="glyphicon glyphicon-music"></h3>
+    </a>
+
+  </div>
+</nav>
+
 <section ng-controller="mainController">
-
-  <h1>{{person.fname}}</h1>
-  <h1>{{person.lname}}</h1>
-
-  <h1><%= @current_user[:full_name] %></h1>
-  <h1><%= @current_user[:username] %></h1>
-  <h1><%= @current_user[:country] %></h1>
-  <h1><%= @current_user[:city] %></h1>
-  <img class="thumbnail" src="<%= @current_user[:avatar_url] %>" alt="" />
-  
+  <div id="user-info" class="col-xs-12 col-sm-6">
+    <div id="user-avatar" class="col-xs-4">
+      <img class="thumbnail" src="https://i1.sndcdn.com/avatars-000096395819-ndj6sz-large.jpg" alt="avatar">
+    </div>
+  </div>
+  <div id="song-info" class="col-xs-12 col-sm-6">
+    <h1>{{person.lname}}</h1>
+  </div>
 </section>

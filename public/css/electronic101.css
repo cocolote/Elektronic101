@@ -3,52 +3,35 @@
 
 body {
   font-family: 'Roboto Slab', serif;
-  background-color: #151825;
+  background-color: black;
   color: white;
 }
 
 /* ===================== HOME STYLE ===================== */
 
-/* ---------- Backgroind ---------- */
-
-#background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-image: url(/img/symbols-bk.png);
-  background-size: cover;
-}
-
 /* ---------- Main Title ---------- */
 
 #main-title {
   text-align: center;
-  background-image: url(/img/fake-brick.png);
-  background-color: rgba(21, 24, 37, 0.8);
-  box-shadow: 0 0 30px -2px #111;
+  background-color: transparent;
   margin: 5.5vh;
-  border-radius: none;
 }
 
 #main-title h1 {
   font-family: 'Monoton', cursive;
-  color: #d1423a;
   font-size: 8vw;
 }
 
 #start-button a {
   text-decoration: none;
-  color: #aaa;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
+  color: #111;
 }
 
-#start-button a:hover {
-  text-shadow: 0 0 5px white,
-               0 0 20px #3cdb57;
-  color: white;
+.light-up {
+  color: #000;
+  -webkit-transition: all 3s;
+  -moz-transition: all 3s;
+  -o-transition: all 3s;
 }
 
 /* -------------------------------- */
@@ -72,3 +55,67 @@ body {
 }
 
 /* -------------------------------- */
+
+/* =================== PLAYER STYLE ===================== */
+
+/* ------------- Nav -------------- */
+
+#nav-title {
+  font-family: 'Monoton', cursive;
+  color: orange;
+  text-shadow: 0 0 1px white,
+               0 0 50px orange;
+}
+
+.nav-icon {
+  float: right;
+  margin-left: 50px;
+  text-decoration: none;
+  color: #222;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5;
+  transition: all 0.5;
+}
+
+.nav-icon:hover {
+  color: green;
+  text-shadow: 0 0 1px white,
+               0 0 30px green;
+}
+
+/* ------------- User ------------- */
+
+#user-info {
+  margin-top: 5vh;
+  border: 2px solid #222;
+  border-radius: 1em;
+  height: 20vh;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5;
+  transition: all 0.5;
+}
+
+#song-info {
+  margin-top: 5vh;
+  border: 2px solid #222;
+  border-radius: 1em;
+  height: 20vh;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5;
+  transition: all 0.5;
+}
+
+#user-info:hover {
+  border-color: #d1423a;
+  box-shadow: 0 0 30px -7px #d1423a,
+              inset 0 0 30px -7px #d1423a;
+}
+
+#song-info:hover {
+  border-color: #d1423a;
+  box-shadow: 0 0 30px -7px #d1423a,
+              inset 0 0 30px -7px #d1423a;
+}

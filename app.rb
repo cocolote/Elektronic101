@@ -10,16 +10,18 @@ Dotenv.load
 # HELPERS #
 ###########
 
-def get_client
-  client = Soundcloud.new(
-    client_id:     ENV['MY_CLIENT_ID'],
-    client_secret: ENV['MY_CLIENT_SECRET'],
-    redirect_uri:  'http://localhost:4567/oauth/callback'
-  )
-end
+helpers do
+  def get_client
+    client = Soundcloud.new(
+      client_id:     ENV['MY_CLIENT_ID'],
+      client_secret: ENV['MY_CLIENT_SECRET'],
+      redirect_uri:  'http://localhost:4567/oauth/callback'
+    )
+  end
 
-def get_soundcloud_user(access_token, uri)
-  Soundcloud.new(access_token: access_token).get(uri)
+  def get_soundcloud_user(access_token, uri)
+    Soundcloud.new(access_token: access_token).get(uri)
+  end
 end
 
 ###############
@@ -28,7 +30,8 @@ end
 ###############
 
 get '/' do
-  redirect '/home'
+  #redirect '/home'
+  erb :player
 end
 
 get '/home' do
@@ -43,7 +46,7 @@ end
 get '/oauth/callback' do
   client        = get_client
   access_token  = client.exchange_token(code: params[:code])
-  @current_user = get_soundcloud_user(access_token[:access_token], '/me')
+  @me           = get_soundcloud_user(access_token[:access_token], '/me')
   binding.pry
   erb :player
 end
