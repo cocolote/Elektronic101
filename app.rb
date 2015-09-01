@@ -30,8 +30,8 @@ end
 ###############
 
 get '/' do
-  #redirect '/home'
-  erb :player
+  redirect '/home'
+  #erb :player
 end
 
 get '/home' do
@@ -47,6 +47,5 @@ get '/oauth/callback' do
   client        = get_client
   access_token  = client.exchange_token(code: params[:code])
   @me           = get_soundcloud_user(access_token[:access_token], '/me')
-  binding.pry
   erb :player
 end
