@@ -99,7 +99,7 @@ end
 
 get '/player' do
   @me        = User.find(session[:user])
-  @favorites = get_soundcloud_user(@me.access_token, '/me/favorites') 
+  #@favorites = get_soundcloud_user(@me.access_token, '/me/favorites') 
   erb :player
 end
 

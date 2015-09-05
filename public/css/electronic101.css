@@ -92,7 +92,8 @@ nav {
 /* ------------- User ------------- */
 
 #user-info {
-  border: 5px solid #111;
+  background-image: url(/img/fake-brick.png);
+  margin-bottom: 10px;
   padding: 15px;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
@@ -100,25 +101,21 @@ nav {
   transition: all 0.5;
 }
 
-#user-info:hover {
-  border-color: #d1423a;
-  box-shadow: 0 0 30px -7px #d1423a,
-              inset 0 0 30px -7px #d1423a;
-}
-
 #img-avatar {
-  background-image: url(/img/black-twill.png);
   padding: 5px;
+  border: 2px dotted #333;
 }
 
 #username {
   margin: 2vh 0 1.5vh 0;
+  color: #4a148c; 
 }
 
 /* ------------- Song ------------- */
 
 #song-info {
   border: 5px solid #111;
+  margin-bottom: 10px;
   padding: 15px;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
@@ -135,18 +132,31 @@ nav {
 /* ----------- Playlist ----------- */
 
 #playlist-container {
-  margin-top: 5px;
-  /*border: 5px solid #111;*/
+  background-image: url(/img/fake-brick.png);
   height: 54vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-/*#playlist-container:hover {
-  border-color: #d1423a;
-  box-shadow: 0 0 30px -7px #d1423a,
-              inset 0 0 30px -7px #d1423a;
-}*/
+#playlist-container::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0px;
+}
+
+#playlist-container::-moz-scrollbar {
+  background-color: transparent;
+  width: 0px;
+}
+
+#playlist-container::-o-scrollbar {
+  background-color: transparent;
+  width: 0px;
+}
+
+#playlist-container::scrollbar {
+  background-color: transparent;
+  width: 0px;
+}
 
 #playlist {
   list-style: none;
@@ -154,8 +164,7 @@ nav {
 }
 
 .pl-row {
-  background-image: url(/img/fake-brick.png);
-  margin-bottom: 5px;
+  border-bottom: 2px dotted #333;
   vertical-align: middle;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
@@ -164,21 +173,11 @@ nav {
 }
 
 .pl-row:hover {
-  background-color: rgba(254,164,1,0.1);
+  background-color: rgba(74,20,140,0.1);
 }
 
 .artwork-container {
   width: 12.7rem;
-}
-
-.del-container {
-  float: right;
-  background-image: url(/img/black-twill.png);
-  background-color: rgba(255,0,0,0.2);
-  width: 4rem;
-  margin: 3.5rem 1rem 0 0;
-  padding: 9px 0 8px 12px;
-  border-radius: 100%;
 }
 
 .play-art {
@@ -192,7 +191,6 @@ nav {
 }
 
 .song-artwork {
-  background-image: url(/img/black-twill.png);
   padding: 5px;
 }
 
@@ -200,10 +198,102 @@ nav {
   color: white;
 }
 
-.del-button {
-  color: white;
+.del-container {
+  float: right;
+  background-color: rgba(255,0,0,0.2);
+  width: 4rem;
+  margin: 3.5rem 2rem 0 0;
+  padding: 9px 0 8px 12px;
+  border-radius: 100%;
 }
 
-/*.pl-row div {
+.del-button {
+  color: white;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5;
+  transition: all 0.5;
+}
+
+.del-button:hover {
+  text-decoration: none;
+  color: red;
+  text-shadow: 0 0 15px red;
+}
+
+
+/* ---------- Controllers --------- */
+
+#controllers-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+}
+
+#controllers-bar {
+  padding: 0;
+  background-image: url(/img/black-twill.png);
+  background-color: #4a148c; 
+}
+
+#controllers-bar div a {
+  color: #111;
+}
+
+#mypl-button {
+  margin: 0;
+  padding: 11.5px;
+  width: 13rem;
+  border-right: 2px solid #111;
+}
+
+#likes-button {
+  margin: 0;
+  padding: 11.5px;
+  width: 6.5rem;
+  border-right: 2px solid #111;
+}
+
+/* -------- Media Buttons --------- */
+
+#media-container {
+  float: right;
+  margin: 0;
+  margin-right: 5px;
+  padding: 0;
+}
+
+#media-container h2 {
+  margin: 0;
+  padding: 4px 0;
+}
+
+#media-container h2 a {
+  color: #111;
+  text-decoration: none;
+}
+
+#backward-con-button {
+  margin: 0;
+  width: 5.5rem;
+}
+
+#playpause-con-button {
+  margin: 0;
+  width: 5.5rem;
+}
+
+#forward-con-button {
+  margin: 0;
+  width: 5.5rem;
+}
+
+#volume-con-button {
+  margin: 0;
+  width: 5.5rem;
+}
+
+/*#controllers-container div {
   border: 1px solid blue;
 }

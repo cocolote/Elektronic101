@@ -55,6 +55,7 @@
 <section>
   <div id="playlist-container" class="row">
     <ul id="playlist">
+      <% if @favorites %>
       <% @favorites.each do |track| %>
         <a href="#">
           <li>
@@ -87,8 +88,68 @@
             </div>
           </li>
         </a>
-      <% end %> 
+      <% end %>
+      <% end %>
     </ul>
   </div>
 </section>
 
+<!-- ==================== CONTROLLERS ===================== -->
+
+<section id="controllers-container">
+  <div id="controllers-bar" class="container">
+
+    <div id="mypl-button" 
+      class="col-xs-2">
+      <a href="#">
+        MY-PLAYLISTS
+      </a>
+    </div>
+
+    <div id="likes-button" 
+      class="col-xs-1">
+      <a href="#">
+        LIKES
+      </a>
+    </div>
+
+    <div id="media-container">
+      <div id="backward-con-button" 
+        class="col-xs-1">
+        <h2>
+          <a href="#"
+           class="glyphicon glyphicon-backward">
+          </a>
+        </h2>
+      </div>
+
+      <div id="playpause-con-button" 
+        class="col-xs-1">
+        <h2>
+          <a href="#"
+           class="glyphicon glyphicon-play">
+          </a>
+        </h2>
+      </div>
+
+      <div id="forward-con-button" 
+        class="col-xs-1">
+        <h2>
+          <a href="#"
+           class="glyphicon glyphicon-forward">
+          </a>
+        </h2>
+      </div>
+
+      <div id="volume-con-button" 
+        class="col-xs-1">
+        <h2>
+          <a href="#"
+              class="glyphicon glyphicon-headphones">
+          </a>
+        </h2>
+      </div>
+    </div>
+
+  </div>
+</section>
