@@ -6,6 +6,15 @@ require 'soundcloud'
 require 'dotenv'
 Dotenv.load
 
+# ======================= CLASSES ======================= 
+require_relative './models/user'
+
+# ======================= SESSIONS ====================== 
+
+use Rack::Session::Cookie, {
+  secret: ENV['SESSION_SECRET']
+}
+
 ###########
 # HELPERS #
 ###########
@@ -22,6 +31,29 @@ helpers do
   def get_soundcloud_user(access_token, uri)
     Soundcloud.new(access_token: access_token).get(uri)
   end
+
+  def user_params(connected_user, token)
+    {
+      sc_user_id:              connected_user[:id],
+      access_token:            token[:access_token],
+      refresh_token:           token[:refresh_token],
+      username:                connected_user[:username],
+      avatar:                  connected_user[:avatar_url],
+      country:                 connected_user[:country],
+      city:                    connected_user[:city],
+      track_count:             connected_user[:track_count],
+      playlist_count:          connected_user[:playlist_count],
+      favorites_count:         connected_user[:public_favorites_count],
+      followers_count:         connected_user[:followers_count],
+      following_count:         connected_user[:followings_count],
+      private_tracks_count:    connected_user[:private_tracks_count],
+      private_playlists_count: connected_user[:private_playlist_count]
+    }
+  end
+
+  def is_user_login?
+    session[:user_id]
+  end
 end
 
 ###############
@@ -30,8 +62,11 @@ end
 ###############
 
 get '/' do
-  redirect '/home'
-  #erb :player
+  if session[:user_id]
+    redirect '/player'
+  else
+    redirect '/home'
+  end
 end
 
 get '/home' do
@@ -44,8 +79,27 @@ get '/oauth' do
 end
 
 get '/oauth/callback' do
-  client        = get_client
-  access_token  = client.exchange_token(code: params[:code])
-  @me           = get_soundcloud_user(access_token[:access_token], '/me')
+  client  = get_client
+  token   = client.exchange_token(code: params[:code])
+  sc_user = get_soundcloud_user(token[:access_token], '/me')
+  me_user = User.find_by(sc_user_id: sc_user[:id])
+
+  if me_user
+    me_user.access_token  = token[:access_token]
+    me_user.refresh_token = token[:refresh_token]
+    me_user.save
+  else
+    User.create(user_params(sc_user, access_token))
+    me_user = User.find_by(sc_user_id: sc_user[:id])
+  end
+  session[:user_id] = me_user.id
+
+  redirect '/player'
+end
+
+get '/player' do
+  @me        = User.find(session[:user])
+  @favorites = get_soundcloud_user(@me.access_token, '/me/favorites') 
   erb :player
 end
+

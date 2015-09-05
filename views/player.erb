@@ -1,4 +1,4 @@
-<nav>
+<nav class="row">
   <div class="col-xs-8">
     <h1 id="nav-title">Elektronic 101</h1>
   </div>
@@ -16,13 +16,79 @@
   </div>
 </nav>
 
-<section ng-controller="mainController">
-  <div id="user-info" class="col-xs-12 col-sm-6">
-    <div id="user-avatar" class="col-xs-4">
-      <img class="thumbnail" src="https://i1.sndcdn.com/avatars-000096395819-ndj6sz-large.jpg" alt="avatar">
+<!-- =================== INFO SECTION ===================== -->
+
+<section class="row"  ng-controller="mainController">
+  <div class="col-xs-12 col-sm-6">
+    <div id="user-info" class="row">
+
+      <!-- avatar container -->
+      <div id="user-avatar" class="col-xs-3">
+        <img id="img-avatar" 
+          class="img-responsive" 
+            src="<%= @me[:avatar] %>" 
+            alt="avatar">
+      </div>
+
+      <!-- user info container -->
+      <div class="col-xs-9">
+        <h3 id="username"><%= @me[:username] %></h3>
+        <p><%= @me[:city] %> | <%= @me[:country] %></p>
+        <p>
+          Tracks: <%= @me[:track_count] %> | 
+          Followers: <%= @me[:followers_count] %> | 
+          Favorites: <%= @me[:favorites_count] %>
+        </p>
+      </div>
+
     </div>
   </div>
-  <div id="song-info" class="col-xs-12 col-sm-6">
-    <h1>{{person.lname}}</h1>
+
+  <div class="col-xs-12 col-sm-6">
+    <div id="song-info" class="row">
+    </div>
   </div>
 </section>
+
+<!-- ===================== PLAYLIST ======================= -->
+
+<section>
+  <div id="playlist-container" class="row">
+    <ul id="playlist">
+      <% @favorites.each do |track| %>
+        <a href="#">
+          <li>
+            <div class="pl-row row">
+
+              <!-- song artwork -->
+              <div class="artwork-container col-xs-2 col-sm-1 col-md-1">
+                <img class="song-artwork"
+                     src="<%= track[:artwork_url] %>"
+                     alt="artwork" />
+                <h1 class="play-art glyphicon glyphicon-play">
+                </h1>
+              </div>
+
+              <!-- song title -->
+              <div class="title-container col-xs-7 col-sm-10 col-md-10">
+                <h4 class="song-title">
+                  <%= track[:title] %>
+                </h4>
+              </div>
+
+              <!-- delete button -->
+              <div class="del-container col-xs-1">
+                <a href="#" 
+                     id="<%= track[:id] %>"
+                  class="del-button glyphicon glyphicon-remove">
+                </a>
+              </div>
+              
+            </div>
+          </li>
+        </a>
+      <% end %> 
+    </ul>
+  </div>
+</section>
+

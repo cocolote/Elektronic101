@@ -60,7 +60,12 @@ body {
 
 /* ------------- Nav -------------- */
 
+nav {
+  margin-bottom: 3vh;
+}
+
 #nav-title {
+  margin: 2.5vh 0 2.5vh 0;
   font-family: 'Monoton', cursive;
   color: orange;
   text-shadow: 0 0 1px white,
@@ -87,21 +92,8 @@ body {
 /* ------------- User ------------- */
 
 #user-info {
-  margin-top: 5vh;
-  border: 2px solid #222;
-  border-radius: 1em;
-  height: 20vh;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -o-transition: all 0.5;
-  transition: all 0.5;
-}
-
-#song-info {
-  margin-top: 5vh;
-  border: 2px solid #222;
-  border-radius: 1em;
-  height: 20vh;
+  border: 5px solid #111;
+  padding: 15px;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -o-transition: all 0.5;
@@ -114,8 +106,104 @@ body {
               inset 0 0 30px -7px #d1423a;
 }
 
+#img-avatar {
+  background-image: url(/img/black-twill.png);
+  padding: 5px;
+}
+
+#username {
+  margin: 2vh 0 1.5vh 0;
+}
+
+/* ------------- Song ------------- */
+
+#song-info {
+  border: 5px solid #111;
+  padding: 15px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5;
+  transition: all 0.5;
+}
+
 #song-info:hover {
   border-color: #d1423a;
   box-shadow: 0 0 30px -7px #d1423a,
               inset 0 0 30px -7px #d1423a;
+}
+
+/* ----------- Playlist ----------- */
+
+#playlist-container {
+  margin-top: 5px;
+  /*border: 5px solid #111;*/
+  height: 54vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/*#playlist-container:hover {
+  border-color: #d1423a;
+  box-shadow: 0 0 30px -7px #d1423a,
+              inset 0 0 30px -7px #d1423a;
+}*/
+
+#playlist {
+  list-style: none;
+  padding: 0;
+}
+
+.pl-row {
+  background-image: url(/img/fake-brick.png);
+  margin-bottom: 5px;
+  vertical-align: middle;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5;
+  transition: all 0.5;
+}
+
+.pl-row:hover {
+  background-color: rgba(254,164,1,0.1);
+}
+
+.artwork-container {
+  width: 12.7rem;
+}
+
+.del-container {
+  float: right;
+  background-image: url(/img/black-twill.png);
+  background-color: rgba(255,0,0,0.2);
+  width: 4rem;
+  margin: 3.5rem 1rem 0 0;
+  padding: 9px 0 8px 12px;
+  border-radius: 100%;
+}
+
+.play-art {
+  position: absolute;
+  top: 1rem;
+  left: 4.5rem;
+  color: #111;
+  border-radius: 100%;
+  background-image: url(/img/black-twill.png);
+  padding: 5px;
+}
+
+.song-artwork {
+  background-image: url(/img/black-twill.png);
+  padding: 5px;
+}
+
+.song-title {
+  color: white;
+}
+
+.del-button {
+  color: white;
+}
+
+/*.pl-row div {
+  border: 1px solid blue;
 }
