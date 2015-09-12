@@ -4,6 +4,7 @@ require 'sinatra/activerecord'
 require 'pry'
 require 'soundcloud'
 require 'dotenv'
+require 'json'
 Dotenv.load
 
 # ======================= CLASSES ======================= 
@@ -98,8 +99,30 @@ get '/oauth/callback' do
 end
 
 get '/player' do
-  @me        = User.find(session[:user])
-  #@favorites = get_soundcloud_user(@me.access_token, '/me/favorites') 
   erb :player
 end
 
+# =================== ME CONTROLLER ====================
+
+get '/me.json' do
+  content_type :json
+  me = User.find(session[:user_id])
+
+  {
+    avatar:          me.avatar,
+    username:        me.username,
+    city:            me.city,
+    country:         me.country,
+    track_count:     me.track_count,
+    followers_count: me.followers_count,
+    favorites_count: me.favorites_count
+  }.to_json
+end
+
+# ================ LIKES CONTROLLER ====================
+
+get '/likes.json' do
+  content_type :json
+  me    = User.find(session[:user_id])
+  likes = get_soundcloud_user(me[:access_token], '/me/favorites').to_json 
+end

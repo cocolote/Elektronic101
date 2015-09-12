@@ -18,7 +18,7 @@
 
 <!-- =================== INFO SECTION ===================== -->
 
-<section class="row"  ng-controller="mainController">
+<section class="row"  ng-controller="UsersCtrl">
   <div class="col-xs-12 col-sm-6">
     <div id="user-info" class="row">
 
@@ -26,18 +26,18 @@
       <div id="user-avatar" class="col-xs-3">
         <img id="img-avatar" 
           class="img-responsive" 
-            src="<%= @me[:avatar] %>" 
+         ng-src="{{ me.avatar }}" 
             alt="avatar">
       </div>
 
       <!-- user info container -->
       <div class="col-xs-9">
-        <h3 id="username"><%= @me[:username] %></h3>
-        <p><%= @me[:city] %> | <%= @me[:country] %></p>
+        <h3 id="username">{{ me.username }}</h3>
+        <p>{{ me.city }} | {{ me.country }}</p>
         <p>
-          Tracks: <%= @me[:track_count] %> | 
-          Followers: <%= @me[:followers_count] %> | 
-          Favorites: <%= @me[:favorites_count] %>
+          Tracks: {{ me.track_count }} | 
+          Followers: {{ me.followers_count }} | 
+          Favorites: {{ me.favorites_count }}
         </p>
       </div>
 
@@ -52,44 +52,40 @@
 
 <!-- ===================== PLAYLIST ======================= -->
 
-<section>
+<section ng-controller="LikesCtrl">
   <div id="playlist-container" class="row">
-    <ul id="playlist">
-      <% if @favorites %>
-      <% @favorites.each do |track| %>
-        <a href="#">
-          <li>
-            <div class="pl-row row">
+    <ul id="playlist" ng-repeat="track in Likes">
+      <a href="#">
+        <li>
+          <div class="pl-row row">
 
-              <!-- song artwork -->
-              <div class="artwork-container col-xs-2 col-sm-1 col-md-1">
-                <img class="song-artwork"
-                     src="<%= track[:artwork_url] %>"
+            <!-- song artwork -->
+            <div class="artwork-container col-xs-2 col-sm-1 col-md-1">
+              <img class="song-artwork"
+                  ng-src="{{ track.artwork_url }}"
                      alt="artwork" />
-                <h1 class="play-art glyphicon glyphicon-play">
-                </h1>
-              </div>
-
-              <!-- song title -->
-              <div class="title-container col-xs-7 col-sm-10 col-md-10">
-                <h4 class="song-title">
-                  <%= track[:title] %>
-                </h4>
-              </div>
-
-              <!-- delete button -->
-              <div class="del-container col-xs-1">
-                <a href="#" 
-                     id="<%= track[:id] %>"
-                  class="del-button glyphicon glyphicon-remove">
-                </a>
-              </div>
-              
+              <h1 class="play-art glyphicon glyphicon-play">
+              </h1>
             </div>
-          </li>
-        </a>
-      <% end %>
-      <% end %>
+
+            <!-- song title -->
+            <div class="title-container col-xs-7 col-sm-10 col-md-10">
+              <h4 class="song-title">
+                {{ track.title }}
+              </h4>
+            </div>
+
+            <!-- delete button -->
+            <div class="del-container col-xs-1">
+              <a href="#" 
+                   id="{{ track.id }}"
+                class="del-button glyphicon glyphicon-remove">
+              </a>
+            </div>
+            
+          </div>
+        </li>
+      </a>
     </ul>
   </div>
 </section>
