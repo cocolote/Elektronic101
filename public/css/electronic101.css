@@ -94,6 +94,7 @@ nav {
 #user-info {
   background-image: url(/img/fake-brick.png);
   margin-bottom: 10px;
+  border-right: 5px solid black;
   padding: 15px;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
@@ -104,6 +105,7 @@ nav {
 #img-avatar {
   padding: 5px;
   border: 2px dotted #333;
+  border-radius: 100%;
 }
 
 #username {
@@ -114,7 +116,8 @@ nav {
 /* ------------- Song ------------- */
 
 #song-info {
-  border: 5px solid #111;
+  background-image: url(/img/fake-brick.png);
+  border-left: 5px solid black;
   margin-bottom: 10px;
   padding: 15px;
   -webkit-transition: all 0.5s;
@@ -124,9 +127,39 @@ nav {
 }
 
 #song-info:hover {
-  border-color: #d1423a;
-  box-shadow: 0 0 30px -7px #d1423a,
-              inset 0 0 30px -7px #d1423a;
+  /*border-color: #d1423a;*/
+  box-shadow: inset 0 0 30px -7px #d1423a; 
+}
+
+#timer {
+  position: absolute;
+  top: 4.5rem;
+  right: 5.4rem;
+}
+
+#clock-container {
+  width: 14rem;
+}
+
+#clock {
+  margin: 0;
+  padding: 4px;
+}
+
+#uv-meter-container {
+  float: right;
+}
+
+.uv-meter-top {
+  margin-top: 1rem;
+  display: block;
+  float: right;
+}
+
+.uv-meter-bottom {
+  display: block;
+  margin-top: 3rem;
+  float: right;
 }
 
 /* ----------- Playlist ----------- */
@@ -174,6 +207,7 @@ nav {
 
 .pl-row:hover {
   background-color: rgba(74,20,140,0.1);
+  box-shadow: inset 0 0 30px -7px #d1423a; 
 }
 
 .artwork-container {
