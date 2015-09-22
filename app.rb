@@ -124,5 +124,8 @@ end
 get '/likes.json' do
   content_type :json
   me    = User.find(session[:user_id])
-  likes = get_soundcloud_user(me[:access_token], '/me/favorites').to_json 
+  { 
+    likes: get_soundcloud_user(me[:access_token], '/me/favorites'),
+    clientId: ENV["MY_CLIENT_ID"] 
+  }.to_json
 end

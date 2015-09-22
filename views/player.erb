@@ -18,7 +18,7 @@
 
 <!-- =================== INFO SECTION ===================== -->
 
-<section class="row"  ng-controller="UsersCtrl">
+<section class="row" ng-controller="UsersCtrl">
   <div class="col-xs-12 col-sm-6">
     <div id="user-info" class="row">
 
@@ -51,7 +51,7 @@
            class="col-xs-5">
         <div id="clock" 
              round-progress
-             max="400"
+             max="500"
              current="100"
              color="orange"
              bgcolor="#222"
@@ -62,7 +62,7 @@
              animation="easeInOutQuart">
         </div>
         <div id="timer">
-          25:55
+          25:59
         </div>
       </div>
 
@@ -104,8 +104,8 @@
 
 <section ng-controller="LikesCtrl">
   <div id="playlist-container" class="row">
-    <ul id="playlist" ng-repeat="track in Likes">
-      <a href="#">
+    <ul id="playlist" ng-repeat="track in likes.likes">
+      <a href="#" ng-click="play($index)">
         <li>
           <div class="pl-row row">
 

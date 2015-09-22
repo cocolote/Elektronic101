@@ -1,6 +1,6 @@
 // The canvas for your awesome JS code
 
-/* ===================== HOME FUNCT ===================== */
+/* HOME FUNCTION ======================================== */
 
 $('#start-button a').hover(handelerIn, handelerOut);
 
