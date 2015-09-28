@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829231118) do
+ActiveRecord::Schema.define(version: 20150924013244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "sc_track_id", null: false
+    t.string   "title",       null: false
+    t.string   "artwork_url"
+    t.string   "username"
+    t.integer  "duration",    null: false
+    t.string   "stream_url",  null: false
+    t.integer  "user_id",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.integer  "sc_user_id",                          null: false

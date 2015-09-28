@@ -133,8 +133,8 @@ nav {
 
 #timer {
   position: absolute;
-  top: 4.5rem;
-  right: 5.4rem;
+  top: 4.6rem;
+  right: 4.4rem;
 }
 
 #clock-container {
@@ -166,7 +166,7 @@ nav {
 
 #playlist-container {
   background-image: url(/img/fake-brick.png);
-  height: 54vh;
+  height: 55vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -197,8 +197,9 @@ nav {
 }
 
 .pl-row {
+  margin:0;
+  padding:0;
   border-bottom: 2px dotted #333;
-  vertical-align: middle;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -o-transition: all 0.5;

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :likes
 
   validates :sc_user_id,
     presence: true

@@ -9,6 +9,7 @@ Dotenv.load
 
 # ======================= CLASSES ======================= 
 require_relative './models/user'
+require_relative './models/like'
 
 # ======================= SESSIONS ====================== 
 
@@ -21,6 +22,14 @@ use Rack::Session::Cookie, {
 ###########
 
 helpers do
+  def is_user_login?
+    session[:user_id]
+  end
+
+  def current_user
+    User.find(session[:user_id])
+  end
+
   def get_client
     client = Soundcloud.new(
       client_id:     ENV['MY_CLIENT_ID'],
@@ -52,8 +61,16 @@ helpers do
     }
   end
 
-  def is_user_login?
-    session[:user_id]
+  def like_params(track)
+    {
+      sc_track_id: track[:id],
+      title:       track[:title],
+      artwork_url: track[:artwork_url],
+      username:    track[:user][:username],
+      duration:    track[:duration],
+      stream_url:  track[:stream_url],
+      user:        current_user
+    }
   end
 end
 
@@ -106,7 +123,7 @@ end
 
 get '/me.json' do
   content_type :json
-  me = User.find(session[:user_id])
+  me = current_user
 
   {
     avatar:          me.avatar,
@@ -123,9 +140,20 @@ end
 
 get '/likes.json' do
   content_type :json
-  me    = User.find(session[:user_id])
+  me = current_user
+
+  if me.likes.first.nil? or params[:sync]
+    new_likes = get_soundcloud_user(me[:access_token], '/me/favorites')
+
+    new_likes.each do |track|
+      if Like.find_by(sc_track_id: track.id).nil?
+        Like.create(like_params(track)) 
+      end
+    end
+  end
+
   { 
-    likes: get_soundcloud_user(me[:access_token], '/me/favorites'),
+    likes: me.likes,
     clientId: ENV["MY_CLIENT_ID"] 
   }.to_json
 end

@@ -28,3 +28,7 @@ soundManager.setup({
   }
 });
 
+this.config = {
+  usePeakData: true,
+  emptyTime: '--:--:--'
+}

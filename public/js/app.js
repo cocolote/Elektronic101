@@ -8,66 +8,81 @@ myApp.controller('UsersCtrl',['$scope','$resource',function($scope, $resource) {
   
 }]);
 
-myApp.controller('LikesCtrl',['$scope','$resource',function($scope, $resource) {
-  
+myApp.controller('LikesCtrl',['$scope','$resource'
+                 ,function($scope, $resource) {
+
   var Likes    = $resource('/likes.json');
 
   $scope.likes = Likes.get(); 
-  
 
-  $scope.play  = function(idx) {
-    
-    if (! window.AudioContext) {
-      if (! window.webkitAudioContext) {
-        alert('no audiocontext foun');
-      }
-      window.AudioContext = window.webkitAudioContext;
-    }
+  $scope.playpauseSM = function(index) {
 
-    var context = new AudioContext();
-    var audioBuffer;
-    var sourceNode;
+    if (mySound.id == index) {
+      if (mySound.paused) {
+        mySound.resume();
 
-    console.log($scope.likes.likes[idx].stream_url);
+        $('#playpause-'+index).removeClass('glyphicon-play')
+                              .addClass('glyphicon-pause');
+      } else {
+        mySound.pause();
 
-    setupAudioNodes();
-    loadSound($scope.likes.likes[idx].stream_url+'?client_id='+$scope.likes.clientId);
-
-    function setupAudioNodes() {
-      sourceNode = context.createBufferSource();
-      sourceNode.connect(context.destination);
-    }
-
-    function loadSound(url) {
-      var request = new XMLHttpRequest();
-      request.addEventListener('progress', updateProgress);
-      request.open('GET', url, true);
-      request.responseType = 'arraybuffer';
-      
-      request.onload = function() {
-        context.decodeAudioData(request.response, function(buffer) {
-          playSound(buffer);
-        }, onError);
+        $('#playpause-'+index).removeClass('glyphicon-pause')
+                              .addClass('glyphicon-play');
       }
 
-      function updateProgress(event) {
-        if (event.lengthComputable) {
-          console.log(event.loaded / event.total);
-        } else {
-          console.log("this isn't working");
+    } else {
+
+      mySound.id     = index;
+      mySound.url    = $scope.likes.likes[index].stream_url+
+                       '?client_id='+
+                       $scope.likes.clientId; 
+      mySound.stream = true;
+
+      mySound.play({
+        onfinish: function() {
+          index += 1;
+          $scope.playpauseSM(index);
         }
-      }
-      request.send();
-    }
+      });
 
-    function playSound(buffer) {
-      sourceNode.buffer = buffer;
-      sourceNode.start(0);
-    }
+      $('.play-art').removeClass('glyphicon-pause')
+                    .addClass('glyphicon-play');
 
-    function onError(e) {
-      console.log(e);
+      $('#playpause-'+index).removeClass('glyphicon-play')
+                            .addClass('glyphicon-pause');
     }
   }
 
 }]);
+
+myApp.controller('RoundProgressCtrl',['$scope','$interval','roundProgressService'
+                 ,function($scope,$interval,roundProgressService) {
+
+  $scope.max     = 0;
+  $scope.current = 0;
+  $scope.time    = 0;
+
+    $interval(function() {
+      console.log(mySound);
+      if (mySound.duration != $scope.max) {
+        $scope.max     = mySound.duration;
+      }
+      $scope.time    = mySound.position; 
+      $scope.current = mySound.position;
+    },1000);
+
+}]);
+
+myApp.filter('msecToTime', function() {
+  return function(msec) {
+    var hh = Math.floor((msec / 1000) / 3600);
+    var mm = Math.floor(((msec / 1000) % 3600) / 60);
+    var ss = Math.floor((msec / 1000) % 60);
+
+    if (hh < 10) var HH = '0' + hh;
+    if (mm < 10) var MM = '0' + mm;
+    if (ss < 10) var SS = '0' + ss;
+    
+    return (HH || hh)+':'+(MM || mm)+':'+(SS || ss);
+  }
+});

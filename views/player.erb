@@ -45,14 +45,16 @@
   </div>
 
   <div class="col-xs-12 col-sm-6">
-    <div id="song-info" class="row">
+    <div id="song-info" 
+         class="row"
+         ng-controller="RoundProgressCtrl">
 
       <div id="clock-container" 
            class="col-xs-5">
         <div id="clock" 
              round-progress
-             max="500"
-             current="100"
+             max="max"
+             current="current"
              color="orange"
              bgcolor="#222"
              radius="50"
@@ -62,7 +64,7 @@
              animation="easeInOutQuart">
         </div>
         <div id="timer">
-          25:59
+          {{ time | msecToTime }}
         </div>
       </div>
 
@@ -105,37 +107,41 @@
 <section ng-controller="LikesCtrl">
   <div id="playlist-container" class="row">
     <ul id="playlist" ng-repeat="track in likes.likes">
-      <a href="#" ng-click="play($index)">
-        <li>
-          <div class="pl-row row">
+      <li id="element-{{ $index }}"
+          ng-click="playpauseSM($index)">
+        <div class="pl-row row">
 
-            <!-- song artwork -->
-            <div class="artwork-container col-xs-2 col-sm-1 col-md-1">
-              <img class="song-artwork"
-                  ng-src="{{ track.artwork_url }}"
-                     alt="artwork" />
-              <h1 class="play-art glyphicon glyphicon-play">
-              </h1>
-            </div>
-
-            <!-- song title -->
-            <div class="title-container col-xs-7 col-sm-10 col-md-10">
-              <h4 class="song-title">
-                {{ track.title }}
-              </h4>
-            </div>
-
-            <!-- delete button -->
-            <div class="del-container col-xs-1">
-              <a href="#" 
-                   id="{{ track.id }}"
-                class="del-button glyphicon glyphicon-remove">
-              </a>
-            </div>
-            
+          <!-- song artwork -->
+          <div class="artwork-container col-xs-2 col-sm-1 col-md-1">
+            <img class="song-artwork"
+                 ng-src="{{ track.artwork_url }}"
+                 alt="artwork">
+            <h1 id="playpause-{{ $index }}" 
+                class="play-art glyphicon glyphicon-play">
+            </h1>
           </div>
-        </li>
-      </a>
+
+          <!-- song title -->
+          <div class="title-container col-xs-7 col-sm-10 col-md-10">
+            <h4 class="song-title">
+              {{ track.title }}
+            </h4>
+            <p>
+              {{ track.username }} |
+              {{ track.duration | msecToTime }}
+            </p>
+          </div>
+
+          <!-- delete button -->
+          <div class="del-container col-xs-1">
+            <a href="#" 
+                 id="{{ track.sc_track_id }}"
+              class="del-button glyphicon glyphicon-remove">
+            </a>
+          </div>
+          
+        </div>
+      </li>
     </ul>
   </div>
 </section>
