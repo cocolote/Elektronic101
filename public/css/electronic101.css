@@ -34,8 +34,6 @@ body {
   -o-transition: all 3s;
 }
 
-/* -------------------------------- */
-
 /* ----------- Features ----------- */
 
 #features #col-1 {
@@ -53,8 +51,6 @@ body {
   box-shadow: 0 0 30px -2px #111;
   margin-bottom: 5vh;
 }
-
-/* -------------------------------- */
 
 /* =================== PLAYER STYLE ===================== */
 
@@ -327,8 +323,4 @@ nav {
 #volume-con-button {
   margin: 0;
   width: 5.5rem;
-}
-
-/*#controllers-container div {
-  border: 1px solid blue;
 }
