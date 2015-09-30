@@ -45,6 +45,8 @@ myApp.controller('LikesCtrl',['$scope','$resource'
         }
       });
 
+      bridge.onPlaying();
+
       $('.play-art').removeClass('glyphicon-pause')
                     .addClass('glyphicon-play');
 
@@ -62,14 +64,18 @@ myApp.controller('RoundProgressCtrl',['$scope','$interval','roundProgressService
   $scope.current = 0;
   $scope.time    = 0;
 
+  bridge.onPlaying = function() {
     $interval(function() {
-      console.log(mySound);
-      if (mySound.duration != $scope.max) {
-        $scope.max     = mySound.duration;
+      if ($scope.max != mySound.duration) {
+        $scope.max = mySound.duration;
       }
+
       $scope.time    = mySound.position; 
       $scope.current = mySound.position;
+      console.log('left: '+mySound.peakData.left);
+      console.log('right: '+mySound.peakData.right);
     },1000);
+  }
 
 }]);
 

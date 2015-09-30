@@ -18,12 +18,15 @@ function handelerOut() {
 // SETUP SOUND MANAGER ==================================
 
 var mySound;
+var bridge = {}
 
 soundManager.setup({
   flashVersion: 9,
   debugMode: false,
+  usePeakData: true,
 
   onready: function() {
+    soundManager.defaultOptions.usePeakData = true;
     mySound = soundManager.createSound();
   }
 });
