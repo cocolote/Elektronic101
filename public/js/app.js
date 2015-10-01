@@ -21,11 +21,13 @@ myApp.controller('LikesCtrl',['$scope','$resource'
       if (mySound.paused) {
         mySound.resume();
 
+        $('#element-'+index+' img').addClass('spin');
         $('#playpause-'+index).removeClass('glyphicon-play')
                               .addClass('glyphicon-pause');
       } else {
         mySound.pause();
 
+        $('#element-'+index+' img').removeClass('spin');
         $('#playpause-'+index).removeClass('glyphicon-pause')
                               .addClass('glyphicon-play');
       }
@@ -52,6 +54,9 @@ myApp.controller('LikesCtrl',['$scope','$resource'
 
       $('#playpause-'+index).removeClass('glyphicon-play')
                             .addClass('glyphicon-pause');
+
+      $('.song-artwork').removeClass('spin');
+      $('#element-'+index+' img').addClass('spin');
     }
   }
 
