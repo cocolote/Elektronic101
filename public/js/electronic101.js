@@ -3,7 +3,7 @@
 $('#start-button a').hover(handelerIn, handelerOut);
 
 function handelerIn() {
-  $('.light-up').css({ 'text-shadow': '0 0 2px white, 0 0 20px #d1423a' });                       
+  $('.light-up').css({ 'text-shadow': '0 0 2px white, 0 0 20px #f4511e' });                       
 }
 
 function handelerOut() {
