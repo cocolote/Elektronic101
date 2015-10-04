@@ -4,6 +4,7 @@
 body {
   font-family: 'Roboto Slab', serif;
   color: white;
+  padding-bottom: 4.5rem;
 }
 
 /* ===================== HOME STYLE ===================== */
@@ -23,19 +24,18 @@ body {
 
 #texture {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  width: inherit;
   height: 100%;
 
   background-image: url(/img/3px-tile.png);
 }
 
 #main-title {
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
 
   text-align: center;
 }
@@ -47,11 +47,11 @@ body {
 
 #start-button a {
   text-decoration: none;
-  color: #e5e5e5;
+  color: #111;
 }
 
 .light-up {
-  color: #e5e5e5;
+  color: #000;
   -webkit-transition: all 3s;
   -moz-transition: all 3s;
   -o-transition: all 3s;
@@ -59,64 +59,20 @@ body {
 
 /* ----------- Features ----------- */
 
-#features {
-  position: relative;
-  margin-top: 5em;
-  height: 40em;
-
-  background-color: #111;
+#features #col-1 {
+  text-align: center;
+  background-image: url(/img/3px-tile.png);
+  background-color: rgba(21, 24, 37, 0.8);
+  box-shadow: 0 0 30px -2px #111;
+  margin-bottom: 5vh;
 }
 
-#features:before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: -10px;
-  width: 100%;
-  height: 10px;
-  
-  background: -webkit-linear-gradient(
-                45deg, transparent 33.333%,
-                #111 33.333%, #111 66.667%,
-                transparent 66.667%
-              ),
-              -webkit-linear-gradient(
-                -45deg, transparent 33.333%,
-                #111 33.333%, #111 66.667%,
-                transparent 66.667%
-              );
-  background: -moz-linear-gradient(
-                45deg, transparent 33.333%,
-                #111 33.333%, #111 66.667%,
-                transparent 66.667%
-              ),
-              -moz-linear-gradient(
-                -45deg, transparent 33.333%,
-                #111 33.333%, #111 66.667%,
-                transparent 66.667%
-              );
-  background: -o-linear-gradient(
-                45deg, transparent 33.333%,
-                #111 33.333%, #111 66.667%,
-                transparent 66.667%
-              ),
-              -o-linear-gradient(
-                -45deg, transparent 33.333%,
-                #111 33.333%, #111 66.667%,
-                transparent 66.667%
-              );
-  background: linear-gradient(
-                45deg, transparent 33.333%,
-                #111 33.333%, #111 66.667%,
-                transparent 66.667%
-              ),
-              linear-gradient(
-                -45deg, transparent 33.333%,
-                #111 33.333%, #111 66.667%,
-                transparent 66.667
-              );
-
-  background-size: 20px 40px;
+#features #col-2 {
+  text-align: center;
+  background-image: url(/img/3px-tile.png);
+  background-color: rgba(21, 24, 37, 0.8);
+  box-shadow: 0 0 30px -2px #111;
+  margin-bottom: 5vh;
 }
 
 /* =================== PLAYER STYLE ===================== */
