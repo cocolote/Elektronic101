@@ -1,14 +1,23 @@
-// HOME FUNCTION ========================================
+// HOVER FUNCTION =======================================
 
-$('#start-button a').hover(handelerIn, handelerOut);
-
-function handelerIn() {
+$('#start-button a').on('mouseenter', function() {
   $('.light-up').css({ 'text-shadow': '0 0 2px white, 0 0 20px #f4511e' });                       
-}
+});
 
-function handelerOut() {
+$('#start-button a').on('mouseleave', function() {
   $('.light-up').css({ 'text-shadow': 'none' });
-}
+});
+
+
+$('#playlist').on('mouseenter', '.pl-row', function() {
+  this.children[0].children[0]
+                  .style.borderColor = '#f4511e';
+});
+
+$('#playlist').on('mouseleave', '.pl-row', function() {
+    this.children[0].children[0]
+                    .style.borderColor = 'transparent';
+});
 
 // SETUP SOUND MANAGER ==================================
 
